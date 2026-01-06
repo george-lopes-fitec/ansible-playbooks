@@ -1,0 +1,9 @@
+---
+roles:
+  # Role de NFS (suporta RedHat/CentOS e Ubuntu/Debian. Instala nfs-common)
+  - name: geerlingguy.nfs
+    src: geerlingguy.nfs
+
+# Role de iSCSI (específica para o pacote open-iscsi do Ubuntu)
+  - name: ricsanfre.iscsi_initiator
+    src: https://github.com/ricsanfre/ansible-role-iscsi_initiator

@@ -1,0 +1,30 @@
+---
+- name: Configurar Storage em VMs Ubuntu
+  hosts: all
+  become: yes
+  vars:
+    # Variáveis para a role ricsanfre.iscsi_initiator
+    open_iscsi_automatic_startup: true
+
+  tasks:
+    - name: Atualizar cache do APT (necessário no Ubuntu)
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Instalar pacotes base de storage
+      ansible.builtin.apt:
+        name:
+          - nfs-common
+          - open-iscsi
+        state: present
+
+    - name: Garantir que o serviço iSCSI está rodando
+      ansible.builtin.service:
+        name: iscsid
+        state: started
+        enabled: yes
+
+  roles:
+    - role: geerlingguy.nfs
+    - role: ricsanfre.iscsi_initiator

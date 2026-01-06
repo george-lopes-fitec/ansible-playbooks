@@ -1,0 +1,4 @@
+---
+roles:
+  - src: geerlingguy.nfs
+  - src: ricsanfre.iscsi_initiator

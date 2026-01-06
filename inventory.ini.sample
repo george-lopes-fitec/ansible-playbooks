@@ -1,0 +1,10 @@
+# Inventário de servidores
+# Substitua os IPs de exemplo pelos IPs reais da suas VMs Ubuntu.
+
+[storage]
+storage1 ansible_host=192.168.56.10
+storage2 ansible_host=192.168.56.11
+
+[storage:vars]
+ansible_user=ansible
+ansible_ssh_private_key_file=~/.ssh/ansible

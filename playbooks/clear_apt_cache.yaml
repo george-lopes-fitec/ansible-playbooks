@@ -1,0 +1,39 @@
+---
+- name: Limpar metadados e trocar mirror para contornar erro de sincronização
+  hosts: all
+  become: yes
+  tasks:
+    - name: Corrigir Mirror e Atualizar
+      block:
+        - name: Substituir mirror brasileiro pelo principal (Global)
+          ansible.builtin.shell: |
+            sed -i 's/br.archive.ubuntu.com/archive.ubuntu.com/g' /etc/apt/sources.list /etc/apt/sources.list.d/*.sources
+          args:
+            executable: /bin/bash
+          register: mirror_change
+          ignore_errors: yes
+
+        - name: Limpar listas antigas do APT
+          ansible.builtin.file:
+            path: /var/lib/apt/lists/
+            state: absent
+
+        - name: Recriar estrutura de diretórios do APT
+          ansible.builtin.file:
+            path: /var/lib/apt/lists/partial
+            state: directory
+            mode: '0755'
+
+        - name: Atualizar cache do APT (usando mirror global)
+          ansible.builtin.apt:
+            update_cache: yes
+            force_apt_get: yes
+          register: apt_result
+          until: apt_result is success
+          retries: 3
+          delay: 5
+
+      rescue:
+        - name: Erro crítico
+          ansible.builtin.debug:
+            msg: "O mirror principal também falhou ou há um problema de rede/MTU no túnel SSH."
