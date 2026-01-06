@@ -19,43 +19,45 @@ Caso não esteja utilizando DevContainer, é altamente recomendável usar um amb
 
 1.  **Instalar `python3-venv` (se necessário)**:
     Se você estiver em um sistema Debian/Ubuntu, pode precisar instalar o pacote `python3-venv`:
-    ```bash
-    sudo apt update
-    sudo apt install python3-venv
-    ```
+```bash
+sudo apt update
+sudo apt install python3-venv
+```
 
 2.  **Criar e Ativar o Ambiente Virtual**:
     A partir da raiz do projeto, crie um ambiente virtual:
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
     (Se estiver usando Fish shell: `source .venv/bin/activate.fish`)
 
 3.  **Instalar Ansible**:
     Com o ambiente virtual ativado, instale o Ansible:
-    ```bash
-    pip install ansible
-    ```
+```bash
+pip install ansible
+```
 
 4.  **Desativar o Ambiente Virtual**:
     Quando terminar de trabalhar, você pode desativar o ambiente virtual:
-    ```bash
-    deactivate
-    ```
+```bash
+deactivate
+```
 
     Lembre-se de ativar o ambiente virtual (`source .venv/bin/activate`) sempre que for executar os playbooks.
 
 ## Requisitos
 
 1. Certificado para acesso SSH
-Certifique-se de ter seu certificado de acesso ssh no caminho abaixo:
-```
+
+    Certifique-se de ter seu certificado de acesso ssh no caminho abaixo:
+```bash
 ~/.ssh/ansible
 ```
 
 2. Instalação de roles
-As roles de dependência são definidas no arquivo `requirements.yml`. Para instalá-las, utilize o seguinte comando:
+
+    As roles de dependência são definidas no arquivo `requirements.yml`. Para instalá-las, utilize o seguinte comando:
 ```bash
 ansible-galaxy install -r requirements.yml
 ```
