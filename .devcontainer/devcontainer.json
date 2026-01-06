@@ -16,5 +16,6 @@
   "updateRemoteUserUID": true,
   "mounts": [
     "source=${env:HOME}/.ssh/ansible,target=/root/.ssh/ansible,type=bind,consistency=cached"
-  ]
+  ],
+  "postCreateCommand": "ansible-galaxy install -r requirements.yml"
 }

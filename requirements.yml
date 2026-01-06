@@ -2,3 +2,9 @@
 roles:
   - src: geerlingguy.nfs
   - src: ricsanfre.iscsi_initiator
+
+collections:
+- name: community.general
+  source: https://github.com/ansible-collections/community.general
+  type: git
+  version: 12.2.0
