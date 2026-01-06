@@ -62,7 +62,7 @@ deactivate
 ansible-galaxy install -r requirements.yml
 ```
 
-# 3. Configuração do usuário ansible nas máquinas do inventário:
+## Configuração do usuário ansible nas máquinas do inventário:
 ```bash
 # 1. Cria o usuário 'ansible' com diretório home e shell bash
 sudo useradd -m -s /bin/bash ansible
